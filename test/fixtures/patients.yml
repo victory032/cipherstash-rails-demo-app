@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  full_name: MyString
+  age: 1
+  weight: 1.5
+  allergies: MyString
+  medications: MyString
+
+two:
+  full_name: MyString
+  age: 1
+  weight: 1.5
+  allergies: MyString
+  medications: MyString
