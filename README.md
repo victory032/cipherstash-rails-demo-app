@@ -1,24 +1,35 @@
-# README
+# CipherStash Rails App Demo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repo contains a Rails app that uses the CipherStash to encrypt and query data.
 
-Things you may want to cover:
+The demo app is an admin view of generated fake medical data for patients.
 
-* Ruby version
+## Running the Demo
 
-* System dependencies
+### Prerequisites
 
-* Configuration
+Follow the rails [getting started guide](https://guides.rubyonrails.org/v5.1/getting_started.html) for installing Ruby and Rails.
 
-* Database creation
+This demo also requires a working version of [PostgreSQL](https://www.postgresql.org/download/).
 
-* Database initialization
+### Get started
 
-* How to run the test suite
+1. Install dependancies:
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+bundle install
+```
 
-* Deployment instructions
+2. Create db, run migrations and seed db with data:
 
-* ...
+```bash
+rails db:setup
+```
+
+3. Run rails server:
+
+```bash
+rails s
+```
+
+4. Go to the [patients dashboard](http://localhost:3000/admin/patients).
