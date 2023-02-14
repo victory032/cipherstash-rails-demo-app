@@ -25,6 +25,7 @@ medications = [
 patients = (0..100).to_a.map do |_n|
   {
     full_name: Faker::Name.unique.name,
+    email: Faker::Internet.email,
     age: Faker::Number.within(range: 1..99),
     weight: Faker::Number.decimal(l_digits: 2),
     allergies: allergies.sample,
