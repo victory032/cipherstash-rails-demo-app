@@ -3,7 +3,7 @@ class CreatePatients < ActiveRecord::Migration[7.0]
     create_table :patients do |t|
       t.string :full_name
       t.string :email
-      t.integer :age
+      t.date :dob
       t.float :weight
       t.string :allergies
       t.string :medications

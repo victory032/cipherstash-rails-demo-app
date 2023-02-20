@@ -5,7 +5,7 @@ ActiveAdmin.register Patient do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :full_name, :age, :weight, :allergies, :medications
+  permit_params :full_name, :dob, :weight, :allergies, :medications
   #
   # or
   #

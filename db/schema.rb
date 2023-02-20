@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_06_234321) do
   create_table "patients", force: :cascade do |t|
     t.string "full_name"
     t.string "email"
-    t.integer "age"
+    t.date "dob"
     t.float "weight"
     t.string "allergies"
     t.string "medications"

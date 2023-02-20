@@ -26,7 +26,7 @@ patients = (0..100).to_a.map do |_n|
   {
     full_name: Faker::Name.unique.name,
     email: Faker::Internet.email,
-    age: Faker::Number.within(range: 1..99),
+    dob: Faker::Date.between(from: '1940-01-01', to: '2020-12-31'),
     weight: Faker::Number.decimal(l_digits: 2),
     allergies: allergies.sample,
     medications: medications.sample,
