@@ -1,0 +1,85 @@
+tables:
+  - path: patients
+    fields:
+      - name: full_name
+        in_place: false
+        cast_type: utf8-str
+        mode: encrypted-duplicate
+        indexes:
+          - version: 1
+            kind: match
+            tokenizer:
+              kind: ngram
+              token_length: 3
+            token_filters:
+              - kind: downcase
+            k: 6
+            m: 2048
+            include_original: true
+          - version: 1
+            kind: ore
+      - name: email
+        in_place: false
+        cast_type: utf8-str
+        mode: encrypted-duplicate
+        indexes:
+          - version: 1
+            kind: match
+            tokenizer:
+              kind: ngram
+              token_length: 3
+            token_filters:
+              - kind: downcase
+            k: 6
+            m: 2048
+            include_original: true
+          - version: 1
+            kind: ore
+      - name: allergies
+        in_place: false
+        cast_type: utf8-str
+        mode: encrypted-duplicate
+        indexes:
+          - version: 1
+            kind: match
+            tokenizer:
+              kind: ngram
+              token_length: 3
+            token_filters:
+              - kind: downcase
+            k: 6
+            m: 2048
+            include_original: true
+          - version: 1
+            kind: ore
+      - name: medications
+        in_place: false
+        cast_type: utf8-str
+        mode: encrypted-duplicate
+        indexes:
+          - version: 1
+            kind: match
+            tokenizer:
+              kind: ngram
+              token_length: 3
+            token_filters:
+              - kind: downcase
+            k: 6
+            m: 2048
+            include_original: true
+          - version: 1
+            kind: ore
+      - name: dob
+        in_place: false
+        cast_type: date
+        mode: encrypted-duplicate
+        indexes:
+          - version: 1
+            kind: ore
+      - name: weight
+        in_place: false
+        cast_type: float
+        mode: encrypted-duplicate
+        indexes:
+          - version: 1
+            kind: ore
