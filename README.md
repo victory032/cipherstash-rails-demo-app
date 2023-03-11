@@ -82,7 +82,7 @@ Add the `activerecord-cipherstash-pg-adapter` to your Gemfile:
 gem "activerecord-cipherstash-pg-adapter"
 ```
 
-And update the default adapter settings in the `database.yml` with `cipherstash-pg`:
+And update the default adapter settings in `config/database.yml` with `cipherstash-pg`:
 
 ``` yaml
 default: &default
