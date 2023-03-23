@@ -18,6 +18,8 @@ tables:
             include_original: true
           - version: 1
             kind: ore
+          - version: 1
+            kind: unique
       - name: email
         in_place: false
         cast_type: utf8-str
@@ -35,6 +37,8 @@ tables:
             include_original: true
           - version: 1
             kind: ore
+          - version: 1
+            kind: unique
       - name: allergies
         in_place: false
         cast_type: utf8-str
@@ -52,6 +56,8 @@ tables:
             include_original: true
           - version: 1
             kind: ore
+          - version: 1
+            kind: unique
       - name: medications
         in_place: false
         cast_type: utf8-str
@@ -69,6 +75,8 @@ tables:
             include_original: true
           - version: 1
             kind: ore
+          - version: 1
+            kind: unique
       - name: dob
         in_place: false
         cast_type: date
