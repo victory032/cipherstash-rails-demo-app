@@ -82,11 +82,15 @@ Add the `activerecord-cipherstash-pg-adapter` to your Gemfile:
 gem "activerecord-cipherstash-pg-adapter"
 ```
 
+Remove the `pg` gem from your Gemfile.
+
+Run `bundle install`.
+
 And update the default adapter settings in `config/database.yml` with `cipherstash-pg`:
 
 ``` yaml
 default: &default
-  adapter: cipherstash_pg
+  adapter: postgres_cipherstash
 ```
 
 ### Log in
@@ -266,10 +270,12 @@ class AddProtectEncryptedColumnstoPatientsTable < ActiveRecord::Migration[7.0]
     add_column :patients, :__full_name_encrypted, :text
     add_column :patients, :__full_name_match, :integer, limit: 2, array: true
     add_column :patients, :__full_name_ore, :ore_64_8_v1
+    add_column :patients, :__full_name_unique, :text
 
     add_column :patients, :__email_encrypted, :text
     add_column :patients, :__email_match, :integer, limit: 2, array: true
     add_column :patients, :__email_ore, :ore_64_8_v1
+    add_column :patients, :__email_unique, :text
 
     add_column :patients, :__dob_encrypted, :text
     add_column :patients, :__dob_ore, :ore_64_8_v1_term
@@ -280,10 +286,12 @@ class AddProtectEncryptedColumnstoPatientsTable < ActiveRecord::Migration[7.0]
     add_column :patients, :__allergies_encrypted, :text
     add_column :patients, :__allergies_match, :integer, limit: 2, array: true
     add_column :patients, :__allergies_ore, :ore_64_8_v1
+    add_column :patients, :__allergies_unique, :text
 
     add_column :patients, :__medications_encrypted, :text
     add_column :patients, :__medications_match, :integer, limit: 2, array: true
     add_column :patients, :__medications_ore, :ore_64_8_v1
+    add_column :patients, :__medications_unique, :text
 
     # Add indexes to the encrypted columns.
     add_index :patients, :__full_name_ore
@@ -349,6 +357,24 @@ This is a temporary fix to enable Protect to work.
 When GA is released these fixes will be removed.
 
 ### Test querying records via PSQL
+
+The configuration is currently set to `plaintext-duplicate` mode on each field.
+
+In this mode, the plaintext field's will be read from and written to.
+
+The encrypted field's will be written to.
+
+Update the mode on each field in the `dataset.yml` to `encrypted-duplicate` mode.
+
+In this mode, the plaintext field will be written to.
+
+The encrypted field's will be read from and written to.
+
+Push this configration to CipherStash:
+
+```bash
+stash -- upload-config --file dataset.yml --client-id <the client-id from previous step> --client-key <the client-key from previous step>
+```
 
 Open your Rails console:
 
