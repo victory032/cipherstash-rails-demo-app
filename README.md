@@ -17,7 +17,7 @@ To view the the Demo app with the completed code checkout the branch `completed-
 
 ### Get started
 
-1. Install dependancies:
+1. Install dependencies:
 
 ```bash
 bundle install
@@ -216,7 +216,7 @@ This configuration file defines two types of encrypted indexes for the columns w
 Now we push this configuration to CipherStash:
 
 ```bash
-stash -- upload-config --file dataset.yml --client-id <the client-id from above> --client-key <the client-key from above>
+stash upload-config --file dataset.yml --client-id <the client-id from above> --client-key <the client-key from above>
 ```
 
 ### Add and apply migrations
@@ -331,8 +331,7 @@ rails c
 And encrypt your data:
 
 ``` ruby
-Patient.find_each(:batch_size => 1000) { |p| p.update
-_columns(p.attributes.filter { |attr| !attr.starts_with?("__") }) }
+Patient.find_each(:batch_size => 1000) { |p| p.update_columns(p.attributes.filter { |attr| !attr.starts_with?("__") }) }
 ```
 
 This will pull the unencrypted data, encrypt it, and write it back to the new columns.
@@ -342,7 +341,7 @@ This will pull the unencrypted data, encrypt it, and write it back to the new co
 Add the below to the Patient model.
 
 ```ruby
- class Patient < ApplicationRecord
+class Patient < ApplicationRecord
   # This will be removed when Protect GA is released.
   self.ignored_columns = %w[wildcardoperatorfix]
   # This will be removed when Protect GA is released.
@@ -373,7 +372,7 @@ The encrypted field's will be read from and written to.
 Push this configration to CipherStash:
 
 ```bash
-stash -- upload-config --file dataset.yml --client-id <the client-id from previous step> --client-key <the client-key from previous step>
+stash upload-config --file dataset.yml --client-id <the client-id from previous step> --client-key <the client-key from previous step>
 ```
 
 Open your Rails console:
@@ -391,7 +390,7 @@ Patient.create(full_name: "Grace Hopper", email: "grace@hopper.example", dob: Da
 In `psql`, verify that the data is encrypted;
 
 ```
-SELECT __full_name_encrypted, __full_name_match, __full_name_ore FROM users LIMIT 5;
+SELECT __full_name_encrypted, __full_name_match, __full_name_ore FROM patients LIMIT 5;
 ```
 
 Now back in the Rails console, to find that new record by email address:
